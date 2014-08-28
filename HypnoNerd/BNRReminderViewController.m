@@ -21,6 +21,21 @@
     return [[self alloc] init];
 }
 
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:self.datePicker.date forKey:@"datePicker.date"];
+    
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    NSLog(@"%@", NSStringFromSelector(_cmd));
+    self.datePicker.date = [coder decodeObjectForKey:@"datePicker.date"];
+    
+    [super decodeRestorableStateWithCoder:coder];
+}
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
